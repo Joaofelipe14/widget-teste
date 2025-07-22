@@ -12,6 +12,7 @@ self.addEventListener('notificationclick', function(event) {
 });
 
 self.addEventListener('push', function(event) {
+    console.log('Ta usando o do cliente')
     const options = {
         body: event.data.text(),
         icon: '/icon-notification-powerzap.png',
