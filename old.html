@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Notification</title>
+</head>
+<body>
+  <h1>Testando Notification API</h1>
+  <button onclick="testarNotificacao()">Enviar Notificação</button>
+
+  <script>
+    function testarNotificacao() {
+      if (!("Notification" in window)) {
+        console.log("Este navegador não suporta notificações.");
+        return;
+      }
+
+      Notification.requestPermission().then(function(permission) {
+        console.log("Permissão:", permission);
+
+        if (permission === "granted") {
+          console.log("Enviando notificação...");
+          const notificacao = new Notification("Olá!", {
+            body: "Esta é uma notificação simples.",
+            icon: "https://via.placeholder.com/100"
+          });
+
+          notificacao.onclick = () => {
+            console.log("Notificação clicada.");
+            window.focus();
+          };
+        } else {
+          console.log("Permissão negada.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
